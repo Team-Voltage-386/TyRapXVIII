@@ -15,14 +15,14 @@ public class SetArms extends InstantCommand {
      * Calls the set arms method
      */
     public SetArms(DoubleSolenoid.Value value) {
-	super();
-	this.value = value;
-	requires(Robot.armsSubsystem);
+        super();
+        this.value = value;
+        requires(Robot.armsSubsystem);
     }
 
     // Called once when the command executes
     protected void initialize() {
-	Robot.armsSubsystem.setArms(value);
+        Robot.armsSubsystem.setArms(value);
     }
 
 }

@@ -23,29 +23,28 @@ public class GearShift extends InstantCommand {
      * teleop use.
      */
     public GearShift() {
-	super();
-	requires(Robot.driveSubsystem);
+        super();
+        requires(Robot.driveSubsystem);
     }
 
     /**
      * Execute a gear shift to a specific gear. For autonomous use.
      * 
-     * @param gear
-     *            The gear to shift to
+     * @param gear The gear to shift to
      */
     public GearShift(Value gear) {
-	super();
-	requires(Robot.driveSubsystem);
-	this.gear = gear;
+        super();
+        requires(Robot.driveSubsystem);
+        this.gear = gear;
     }
 
     // Called once when the command executes
     protected void initialize() {
-	if (gear != null) {
-	    Robot.driveSubsystem.shift(gear);
-	} else {
-	    Robot.driveSubsystem.shift();
-	}
+        if (gear != null) {
+            Robot.driveSubsystem.shift(gear);
+        } else {
+            Robot.driveSubsystem.shift();
+        }
     }
 
 }
