@@ -135,7 +135,7 @@ public class SwitchAuto extends InstantCommand {
 		RightSwitchAutoRight() {
 			addSequential(new GearShift());
 			addSequential(new DriveForward(110));
-			addSequential(new GearShift(Robot.driveSubsystem.SLOW_GEAR));
+			addSequential(new GearShift(DriveSubsystem.SLOW_GEAR));
 			addSequential(new TurnLeft(90));
 			addSequential(new GearShift());
 			addParallel(new SetArms(ArmsSubsystem.LOWERED));
