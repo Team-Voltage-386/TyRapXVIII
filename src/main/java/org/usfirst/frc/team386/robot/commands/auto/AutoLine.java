@@ -10,22 +10,22 @@ import edu.wpi.first.wpilibj.command.InstantCommand;
  */
 public class AutoLine extends InstantCommand {
 
-    public AutoLine() {
-	super();
-    }
-
-    // Called once when the command executes
-    protected void initialize() {
-	switch (Robot.chooserPosition.getSelected()) {
-	case Robot.LEFT:
-	    new DriveForward(120).start();
-	    break;
-	case Robot.RIGHT:
-	    new DriveForward(120).start();
-	    break;
-	case Robot.CENTER:
-	    new SwitchAuto().start();
+	public AutoLine() {
+		super();
 	}
-    }
+
+	// Called once when the command executes
+	protected void initialize() {
+		switch (Robot.chooserPosition.getSelected()) {
+		case Robot.LEFT:
+			new DriveForward(120).start();
+			break;
+		case Robot.RIGHT:
+			new DriveForward(120).start();
+			break;
+		case Robot.CENTER:
+			new SwitchAuto().start();
+		}
+	}
 
 }

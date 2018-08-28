@@ -14,13 +14,13 @@ public class ShiftArms extends InstantCommand {
      * Calls the shift arms method
      */
     public ShiftArms() {
-	super();
-	requires(Robot.armsSubsystem);
+        super();
+        requires(Robot.armsSubsystem);
     }
 
     // Called once when the command executes
     protected void initialize() {
-	Robot.armsSubsystem.shiftArms();
+        Robot.armsSubsystem.shiftArms();
     }
 
 }

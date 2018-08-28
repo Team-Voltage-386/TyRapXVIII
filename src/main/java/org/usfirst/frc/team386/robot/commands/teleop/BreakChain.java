@@ -10,14 +10,14 @@ import edu.wpi.first.wpilibj.command.InstantCommand;
 public class BreakChain extends InstantCommand {
 
     public BreakChain() {
-	super();
-	requires(Robot.elevatorSubsystem);
+        super();
+        requires(Robot.elevatorSubsystem);
     }
 
     // Called once when the command executes
     protected void initialize() {
-	// TODO: only invoke if we are within 30 seconds of the end of the match
-	Robot.elevatorSubsystem.breakChain();
+        // TODO: only invoke if we are within 30 seconds of the end of the match
+        Robot.elevatorSubsystem.breakChain();
     }
 
 }

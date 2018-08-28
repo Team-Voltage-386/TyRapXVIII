@@ -14,10 +14,10 @@ public class AnalogUltrasonic extends AnalogInput {
      * @param maxRangeInInches
      */
     public AnalogUltrasonic(int channel, double minRangeInInches, double maxRangeInInches) {
-	super(channel);
-	maxRange = maxRangeInInches;
-	minRange = minRangeInInches;
-	multiplier = (maxRange - minRange) / 5;
+        super(channel);
+        maxRange = maxRangeInInches;
+        minRange = minRangeInInches;
+        multiplier = (maxRange - minRange) / 5;
 
     }
 
@@ -28,6 +28,6 @@ public class AnalogUltrasonic extends AnalogInput {
      * @return the distance in inches
      */
     public double getInches() {
-	return getVoltage() * multiplier + minRange;
+        return getVoltage() * multiplier + minRange;
     }
 }

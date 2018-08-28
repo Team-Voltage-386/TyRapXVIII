@@ -10,36 +10,36 @@ public class HighGearTurn extends Command {
     Timer timer = new Timer();
 
     public HighGearTurn(int angle) {
-	super();
-	requires(Robot.driveSubsystem);
-	this.angle = angle;
+        super();
+        requires(Robot.driveSubsystem);
+        this.angle = angle;
     }
 
     // Called once when the command executes
     protected void initialize() {
-	// Robot.driveSubsystem.shift(FAST_GEAR);
-	Robot.driveSubsystem.resetPidTurn(angle, -1);
-	timer.reset();
+        // Robot.driveSubsystem.shift(FAST_GEAR);
+        Robot.driveSubsystem.resetPidTurn(angle, -1);
+        timer.reset();
     }
 
     double previousTime = 0;
 
     @Override
     protected void execute() {
-	// SmartDashboard.putNumber("Time elapsed", timer.get() - previousTime);
-	previousTime = timer.get();
-	Robot.driveSubsystem.turnWithPid();
+        // SmartDashboard.putNumber("Time elapsed", timer.get() - previousTime);
+        previousTime = timer.get();
+        Robot.driveSubsystem.turnWithPid();
     }
 
     @Override
     protected boolean isFinished() {
-	return Robot.driveSubsystem.pidTurnDone();
+        return Robot.driveSubsystem.pidTurnDone();
     }
 
     @Override
     protected void end() {
-	Robot.driveSubsystem.resetEncoders();
-	Robot.driveSubsystem.resetGyro();
+        Robot.driveSubsystem.resetEncoders();
+        Robot.driveSubsystem.resetGyro();
     }
 
 }

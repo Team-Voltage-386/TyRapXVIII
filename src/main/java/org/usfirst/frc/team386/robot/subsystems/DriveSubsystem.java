@@ -72,7 +72,7 @@ public class DriveSubsystem extends Subsystem {
     Compressor compressor = new Compressor(RobotMap.compressor);
 
     DoubleSolenoid gearShifter = new DoubleSolenoid(RobotMap.gearShiftSolenoidForwardChannel,
-	    RobotMap.gearShiftSolenoidReverseChannel);
+            RobotMap.gearShiftSolenoidReverseChannel);
 
     public boolean IS_FAST_GEAR = (gearShifter.get() == FAST_GEAR);
     public Ultrasonic rearUltrasonic = new Ultrasonic(RobotMap.rearPingChannel, RobotMap.rearEchoChannel);
@@ -86,27 +86,27 @@ public class DriveSubsystem extends Subsystem {
      * Construct a new DriveSubsystem. No kidding
      */
     public DriveSubsystem() {
-	leftSlave1.follow(frontLeft);
-	rightSlave1.follow(frontRight);
-	frontLeft.configPeakCurrentLimit(kPeakCurrentAmps, 10);
-	frontLeft.configPeakCurrentDuration(kPeakTimeMs, 10); /* this is a necessary call to avoid errata. */
-	frontLeft.configContinuousCurrentLimit(kContinCurrentAmps, 10);
-	frontLeft.enableCurrentLimit(true); /* honor initial setting */
+        leftSlave1.follow(frontLeft);
+        rightSlave1.follow(frontRight);
+        frontLeft.configPeakCurrentLimit(kPeakCurrentAmps, 10);
+        frontLeft.configPeakCurrentDuration(kPeakTimeMs, 10); /* this is a necessary call to avoid errata. */
+        frontLeft.configContinuousCurrentLimit(kContinCurrentAmps, 10);
+        frontLeft.enableCurrentLimit(true); /* honor initial setting */
 
-	frontRight.configPeakCurrentLimit(kPeakCurrentAmps, 10);
-	frontRight.configPeakCurrentDuration(kPeakTimeMs, 10); /* this is a necessary call to avoid errata. */
-	frontRight.configContinuousCurrentLimit(kContinCurrentAmps, 10);
-	frontRight.enableCurrentLimit(true); /* honor initial setting */
+        frontRight.configPeakCurrentLimit(kPeakCurrentAmps, 10);
+        frontRight.configPeakCurrentDuration(kPeakTimeMs, 10); /* this is a necessary call to avoid errata. */
+        frontRight.configContinuousCurrentLimit(kContinCurrentAmps, 10);
+        frontRight.enableCurrentLimit(true); /* honor initial setting */
 
-	frontRight.configOpenloopRamp(OPEN_LOOP_RAMP_SECONDS, NO_TIMEOUT);
-	frontLeft.configOpenloopRamp(OPEN_LOOP_RAMP_SECONDS, NO_TIMEOUT);
+        frontRight.configOpenloopRamp(OPEN_LOOP_RAMP_SECONDS, NO_TIMEOUT);
+        frontLeft.configOpenloopRamp(OPEN_LOOP_RAMP_SECONDS, NO_TIMEOUT);
 
-	compressor.start();
+        compressor.start();
 
-	rearUltrasonic.setAutomaticMode(true);
+        rearUltrasonic.setAutomaticMode(true);
 
-	gearShifter.set(SLOW_GEAR);
-	timer.start();
+        gearShifter.set(SLOW_GEAR);
+        timer.start();
     }
 
     /**
@@ -114,30 +114,29 @@ public class DriveSubsystem extends Subsystem {
      */
 
     public void updateDiagnostics() {
-	// SmartDashboard.putBoolean(Robot.LINE_SENSOR, linesensor.get());
-	SmartDashboard.putNumber(Robot.REAR_ULTRASONIC, rearUltrasonic.getRangeMM());
-	SmartDashboard.putBoolean("Shifter", DoubleSolenoid.Value.kForward == gearShifter.get());
-	// SmartDashboard.putNumber(Robot.FRONT_ULTRASONIC,
-	// frontUltrasonic.getRangeMM());
-	SmartDashboard.putNumber(Robot.ENCODER_TALON_1, frontLeft.getSelectedSensorPosition(0));
-	SmartDashboard.putNumber(Robot.ENCODER_TALON_3, frontRight.getSelectedSensorPosition(0));
-	// SmartDashboard.putNumber(Robot.RIGHT_ENCODER_RIO, rightEncoder.get());
-	SmartDashboard.putNumber("Gyro", gyro.getAngle());
-	SmartDashboard.putString("Gear shifter state", gearShifter.get().toString());
-	if (this.getCurrentCommand() != null)
-	    SmartDashboard.putString("Active drive command", this.getCurrentCommand().getName());
+        // SmartDashboard.putBoolean(Robot.LINE_SENSOR, linesensor.get());
+        SmartDashboard.putNumber(Robot.REAR_ULTRASONIC, rearUltrasonic.getRangeMM());
+        SmartDashboard.putBoolean("Shifter", DoubleSolenoid.Value.kForward == gearShifter.get());
+        // SmartDashboard.putNumber(Robot.FRONT_ULTRASONIC,
+        // frontUltrasonic.getRangeMM());
+        SmartDashboard.putNumber(Robot.ENCODER_TALON_1, frontLeft.getSelectedSensorPosition(0));
+        SmartDashboard.putNumber(Robot.ENCODER_TALON_3, frontRight.getSelectedSensorPosition(0));
+        // SmartDashboard.putNumber(Robot.RIGHT_ENCODER_RIO, rightEncoder.get());
+        SmartDashboard.putNumber("Gyro", gyro.getAngle());
+        SmartDashboard.putString("Gear shifter state", gearShifter.get().toString());
+        if (this.getCurrentCommand() != null)
+            SmartDashboard.putString("Active drive command", this.getCurrentCommand().getName());
     }
 
     /**
      * Drive using arcade-style values: speed and rotation.
      * 
-     * @param xSpeed
-     *            The speed, forward (positive values) or reverse (negative values)
-     * @param zRotation
-     *            The rotation
+     * @param xSpeed    The speed, forward (positive values) or reverse (negative
+     *                  values)
+     * @param zRotation The rotation
      */
     public void driveArcade(double xSpeed, double zRotation) {
-	drive.arcadeDrive(adjustSpeed(xSpeed), deadBand(zRotation, DEAD_BAND_LIMIT));
+        drive.arcadeDrive(adjustSpeed(xSpeed), deadBand(zRotation, DEAD_BAND_LIMIT));
     }
 
     /**
@@ -145,26 +144,25 @@ public class DriveSubsystem extends Subsystem {
      * 
      * @param ySpeed
      * 
-     *            The left motor speed
-     * @param y2Speed
-     *            The right motor speed
+     *                The left motor speed
+     * @param y2Speed The right motor speed
      */
     public void driveTank(double ySpeed, double y2Speed) {
-	drive.tankDrive(adjustSpeed(squareKeepSign(ySpeed)), adjustSpeed(squareKeepSign(y2Speed)));
+        drive.tankDrive(adjustSpeed(squareKeepSign(ySpeed)), adjustSpeed(squareKeepSign(y2Speed)));
     }
 
     /**
      * Boost the forward speed. Not used
      */
     public void startBoost() {
-	speedMultiplier = BOOST_SPEED_MULTIPLIER;
+        speedMultiplier = BOOST_SPEED_MULTIPLIER;
     }
 
     /**
      * Stop boosting the forward speed. Not used
      */
     public void stopBoost() {
-	speedMultiplier = DEFAULT_SPEED_MULTIPLIER;
+        speedMultiplier = DEFAULT_SPEED_MULTIPLIER;
     }
 
     /**
@@ -172,53 +170,51 @@ public class DriveSubsystem extends Subsystem {
      * running.
      */
     public void initDefaultCommand() {
-	if (defaultCommand == null) {
-	    this.defaultCommand = new ArcadeDrive();
-	}
-	setDefaultCommand(defaultCommand);
+        if (defaultCommand == null) {
+            this.defaultCommand = new ArcadeDrive();
+        }
+        setDefaultCommand(defaultCommand);
     }
 
     /**
      * Shift gears. This method will shift to the opposite of the current gear.
      */
     public void shift() {
-	if (gearShifter.get() == FAST_GEAR) {
-	    shift(SLOW_GEAR);
-	} else {
-	    shift(FAST_GEAR);
-	}
+        if (gearShifter.get() == FAST_GEAR) {
+            shift(SLOW_GEAR);
+        } else {
+            shift(FAST_GEAR);
+        }
     }
 
     /**
      * Sift the gearShifter specifically to either low or high gear.
      * 
-     * @param gear
-     *            SLOW_GEAR or FAST_GEAR
+     * @param gear SLOW_GEAR or FAST_GEAR
      */
     public void shift(Value gear) {
-	gearShifter.set(gear);
+        gearShifter.set(gear);
     }
 
     /**
      * Zero all drive encoders.
      */
     public void resetEncoders() {
-	frontLeft.setSelectedSensorPosition(0, 0, 10);
-	frontRight.setSelectedSensorPosition(0, 0, 10);
+        frontLeft.setSelectedSensorPosition(0, 0, 10);
+        frontRight.setSelectedSensorPosition(0, 0, 10);
     }
 
     /**
      * Move forward the specific number of ticks.
      * 
-     * @param ticks
-     *            Encoder ticks to move forward
+     * @param ticks Encoder ticks to move forward
      */
     public void moveForwardTicks(int ticks) {
-	while (Math.abs(frontLeft.getSelectedSensorPosition(0)) < ticks && RobotState.isEnabled()) {
-	    arcadeDriveStraight(FAST_AUTO_MODE_SPEED);
-	    updateDiagnostics();
-	}
-	stop();
+        while (Math.abs(frontLeft.getSelectedSensorPosition(0)) < ticks && RobotState.isEnabled()) {
+            arcadeDriveStraight(FAST_AUTO_MODE_SPEED);
+            updateDiagnostics();
+        }
+        stop();
     }
 
     /**
@@ -233,11 +229,11 @@ public class DriveSubsystem extends Subsystem {
     double previousError = 0;
 
     public void resetTime() {
-	timer.reset();
+        timer.reset();
     }
 
     public void resetGyro() {
-	gyro.reset();
+        gyro.reset();
     }
 
     double derivative;
@@ -245,32 +241,31 @@ public class DriveSubsystem extends Subsystem {
     /**
      * Drives forward while turning based on vision values
      * 
-     * @param speed
-     *            Forward speed
+     * @param speed Forward speed
      */
     public void driveWithVision(double speed) {
-	double error = (Robot.cubeVision.getError());
+        double error = (Robot.cubeVision.getError());
 
-	// Nessicary to avoid resetting derivative when the frame desn't update fast
-	// enough
-	if (error != previousError)
-	    derivative = (error - previousError) / (CubeVisionThread.FPS);
-	integral += error * (CubeVisionThread.FPS);
-	double value = KPCubeVision * error + KDCubeVision * derivative + KICubeVision * integral;
-	drive.arcadeDrive(-1 * speed, value);
-	updateDiagnostics();
-	previousError = error;
+        // Nessicary to avoid resetting derivative when the frame desn't update fast
+        // enough
+        if (error != previousError)
+            derivative = (error - previousError) / (CubeVisionThread.FPS);
+        integral += error * (CubeVisionThread.FPS);
+        double value = KPCubeVision * error + KDCubeVision * derivative + KICubeVision * integral;
+        drive.arcadeDrive(-1 * speed, value);
+        updateDiagnostics();
+        previousError = error;
     }
 
     /**
      * Resets PID values
      */
     public void prepareDriveToCube() {
-	previousTime = 0;
-	integral = 0;
-	previousError = 0;
-	derivative = 0;
-	KPCubeVision = .0035;
+        previousTime = 0;
+        integral = 0;
+        previousError = 0;
+        derivative = 0;
+        KPCubeVision = .0035;
     }
 
     /**
@@ -282,10 +277,10 @@ public class DriveSubsystem extends Subsystem {
      * (as opposed to the instant commands)
      */
     public void driveToCubeAuto() {
-	while (RobotState.isEnabled()) {
-	    drive.arcadeDrive(.75, Robot.cubeVision.getError() * -.005);
-	    updateDiagnostics();
-	}
+        while (RobotState.isEnabled()) {
+            drive.arcadeDrive(.75, Robot.cubeVision.getError() * -.005);
+            updateDiagnostics();
+        }
     }
 
     /**
@@ -294,17 +289,16 @@ public class DriveSubsystem extends Subsystem {
      * 
      * Distance from wall is determined using an ultrasonic sensor.
      * 
-     * @param distanceFromWall
-     *            The distance from the wall is in millimeters.
+     * @param distanceFromWall The distance from the wall is in millimeters.
      */
     public void moveDistanceFromWall(double distanceFromWall, boolean goingForward) {
-	if (goingForward) {
-	    arcadeDriveStraight(SLOW_AUTO_MODE_SPEED);
-	    updateDiagnostics();
-	} else {
-	    arcadeDriveStraight(-1 * SLOW_AUTO_MODE_SPEED);
-	    updateDiagnostics();
-	}
+        if (goingForward) {
+            arcadeDriveStraight(SLOW_AUTO_MODE_SPEED);
+            updateDiagnostics();
+        } else {
+            arcadeDriveStraight(-1 * SLOW_AUTO_MODE_SPEED);
+            updateDiagnostics();
+        }
     }
 
     /**
@@ -312,23 +306,21 @@ public class DriveSubsystem extends Subsystem {
      * replaced by the more optimal command based structure (as opposed to the
      * instant commands)
      * 
-     * @param inches
-     *            Inches to move forward
-     * @param speed
-     *            A value between 0 and 1
+     * @param inches Inches to move forward
+     * @param speed  A value between 0 and 1
      */
     public void moveForward(double inches, double speed) {
-	gyro.reset();
-	resetEncoders();
+        gyro.reset();
+        resetEncoders();
 
-	double ticksRequired = 6.36 * inches * 4;
-	while (Math.abs(frontLeft.getSelectedSensorPosition(0)) < ticksRequired && RobotState.isEnabled()) {
-	    // double ticksRequired = 6.36*inches
-	    // while(Math.abs(rightEncoder.get()) <ticksRequired && RobotState.isEnabled()){
-	    arcadeDriveStraight(speed);
-	    updateDiagnostics();
-	}
-	// stop();
+        double ticksRequired = 6.36 * inches * 4;
+        while (Math.abs(frontLeft.getSelectedSensorPosition(0)) < ticksRequired && RobotState.isEnabled()) {
+            // double ticksRequired = 6.36*inches
+            // while(Math.abs(rightEncoder.get()) <ticksRequired && RobotState.isEnabled()){
+            arcadeDriveStraight(speed);
+            updateDiagnostics();
+        }
+        // stop();
     }
 
     double tolerance, speedThreshold, direction, angle;
@@ -337,14 +329,14 @@ public class DriveSubsystem extends Subsystem {
      * Turns the robot based on gyro values and PID calculations
      */
     public void turnWithPid() {
-	double error = (gyro.getAngle() - (direction * angle));
-	double derivative = gyro.getRate();
-	double value = KP * error + KD * derivative;
-	if (value > .75)
-	    value = .75;
-	else if (value < -.75)
-	    value = -.75;
-	turn(value);
+        double error = (gyro.getAngle() - (direction * angle));
+        double derivative = gyro.getRate();
+        double value = KP * error + KD * derivative;
+        if (value > .75)
+            value = .75;
+        else if (value < -.75)
+            value = -.75;
+        turn(value);
     }
 
     /**
@@ -353,115 +345,108 @@ public class DriveSubsystem extends Subsystem {
      * @return If the PID turn is done
      */
     public boolean pidTurnDone() {
-	return (Math.abs(direction * gyro.getAngle() - angle) < tolerance && Math.abs(gyro.getRate()) < speedThreshold);
+        return (Math.abs(direction * gyro.getAngle() - angle) < tolerance && Math.abs(gyro.getRate()) < speedThreshold);
     }
 
     /**
      * Resets the PID turn variables
      * 
-     * @param angle
-     *            The desired angle to turn to
-     * @param direction
-     *            The direction to turn left: -1 right: 1
+     * @param angle     The desired angle to turn to
+     * @param direction The direction to turn left: -1 right: 1
      */
     public void resetPidTurn(double angle, int direction) {
-	KP = -.1;// SmartDashboard.getNumber("P", -.1);// -.1;
-	KD = -.0225;// -.05;
-	tolerance = 4;
-	speedThreshold = 20;
-	gyro.reset();
-	this.direction = direction;
-	this.angle = angle;
+        KP = -.1;// SmartDashboard.getNumber("P", -.1);// -.1;
+        KD = -.0225;// -.05;
+        tolerance = 4;
+        speedThreshold = 20;
+        gyro.reset();
+        this.direction = direction;
+        this.angle = angle;
     }
 
     /**
      * Turn the given angle and direction with no PID feedback loop.
      * 
-     * @param direction
-     *            -1 (LEFT), 1 (RIGHT)
+     * @param direction -1 (LEFT), 1 (RIGHT)
      */
     public void turnWithoutPid(int direction) {
-	drive.tankDrive(direction * GYRO_TURNING_SPEED, direction * -GYRO_TURNING_SPEED);
+        drive.tankDrive(direction * GYRO_TURNING_SPEED, direction * -GYRO_TURNING_SPEED);
     }
 
     public void turn(double speed) {
-	drive.arcadeDrive(0, speed, false);
+        drive.arcadeDrive(0, speed, false);
     }
 
     /**
      * Stop the robot from moving.
      */
     public void stop() {
-	frontLeft.set(0);
-	frontRight.set(0);
+        frontLeft.set(0);
+        frontRight.set(0);
     }
 
     /**
      * Turn the given angle and direction with a PID feedback loop. Outdated, left
      * here mainly for reference
      * 
-     * @param angle
-     *            The angle to turn
-     * @param direction
-     *            -1 (LEFT), 1 (RIGHT)
+     * @param angle     The angle to turn
+     * @param direction -1 (LEFT), 1 (RIGHT)
      */
     void oldTurnWithPid(double angle, int direction) {
-	// shift(FAST_GEAR);
-	double tolerance = 2, speedThreshold = 15;
-	double KP = -.2, KD = -.05;
-	gyro.reset();
-	while ((Math.abs(direction * gyro.getAngle() - angle) > tolerance || Math.abs(gyro.getRate()) > speedThreshold)
-		&& RobotState.isEnabled()) {
-	    double error = (gyro.getAngle() - (direction * angle));
-	    double derivative = gyro.getRate();
-	    double value = KP * error + KD * derivative;
-	    frontLeft.set(value);
-	    frontRight.set(value);
-	    // } else {
-	    // if (value > 0) {
-	    // frontLeft.set(.35);
-	    // frontRight.set(.35);
-	    // } else {
-	    // frontLeft.set(-.35);
-	    // frontRight.set(-.35);
-	    // }
-	    // }
-	    // SmartDashboard.putNumber("proportional", KP * error);
-	    // SmartDashboard.putNumber("derivative", KD * derivative);
-	    // SmartDashboard.putNumber("Gyro", gyro.getAngle());
-	}
-	// SmartDashboard.putString("Using pid", "true");
-	stop();
+        // shift(FAST_GEAR);
+        double tolerance = 2, speedThreshold = 15;
+        double KP = -.2, KD = -.05;
+        gyro.reset();
+        while ((Math.abs(direction * gyro.getAngle() - angle) > tolerance || Math.abs(gyro.getRate()) > speedThreshold)
+                && RobotState.isEnabled()) {
+            double error = (gyro.getAngle() - (direction * angle));
+            double derivative = gyro.getRate();
+            double value = KP * error + KD * derivative;
+            frontLeft.set(value);
+            frontRight.set(value);
+            // } else {
+            // if (value > 0) {
+            // frontLeft.set(.35);
+            // frontRight.set(.35);
+            // } else {
+            // frontLeft.set(-.35);
+            // frontRight.set(-.35);
+            // }
+            // }
+            // SmartDashboard.putNumber("proportional", KP * error);
+            // SmartDashboard.putNumber("derivative", KD * derivative);
+            // SmartDashboard.putNumber("Gyro", gyro.getAngle());
+        }
+        // SmartDashboard.putString("Using pid", "true");
+        stop();
     }
 
     /**
      * Drives straight with help from gyro.
      * 
-     * @param speed
-     *            The speed to drive straight.
+     * @param speed The speed to drive straight.
      */
     public void arcadeDriveStraight(double speed) {
-	drive.arcadeDrive(speed, GYRO_COMPENSATION * gyro.getAngle());
+        drive.arcadeDrive(speed, GYRO_COMPENSATION * gyro.getAngle());
     }
 
     private double deadBand(double in, double limit) {
-	if (Math.abs(in) < limit) {
-	    return 0;
-	} else {
-	    return in;
-	}
+        if (Math.abs(in) < limit) {
+            return 0;
+        } else {
+            return in;
+        }
     }
 
     /**
      * Applies adjustments to the speed (such as inverting the direction for
      * inverted motors, or applying a dead band).
      * 
-     * @param speed
-     *            The input speed
+     * @param speed The input speed
      * @return The adjusted speed
      */
     private double adjustSpeed(double speed) {
-	return deadBand((-1 * BOOST_SPEED_MULTIPLIER * speed), DEAD_BAND_LIMIT);
+        return deadBand((-1 * BOOST_SPEED_MULTIPLIER * speed), DEAD_BAND_LIMIT);
     }
 
     /**
@@ -469,37 +454,36 @@ public class DriveSubsystem extends Subsystem {
      * used, but a useful concept, runs into problems if the robot requires high
      * power to start moving
      * 
-     * @param in
-     *            The speed.
+     * @param in The speed.
      * @return The altered speed.
      */
     private double squareKeepSign(double in) {
-	if (in < 0) {
-	    return in * in * -1;
-	} else {
-	    return in * in;
-	}
+        if (in < 0) {
+            return in * in * -1;
+        } else {
+            return in * in;
+        }
     }
 
     /**
      * @return the left encoder value
      */
     public double getLeftEncoder() {
-	return frontLeft.getSelectedSensorPosition(0);
+        return frontLeft.getSelectedSensorPosition(0);
     }
 
     /**
      * @return the right encoder value
      */
     public double getRightEncoder() {
-	return frontRight.getSelectedSensorPosition(0);
+        return frontRight.getSelectedSensorPosition(0);
     }
 
     /**
      * @return the gear shifter's state high: kForward low: kReverse
      */
     public DoubleSolenoid.Value getGearState() {
-	return gearShifter.get();
+        return gearShifter.get();
     }
 
 }

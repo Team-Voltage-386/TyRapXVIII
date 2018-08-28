@@ -95,11 +95,11 @@ public class Robot extends IterativeRobot {
      */
     @Override
     public void robotInit() {
-	oi = new OI();
-	gameData = new GameData();
-	cubeVision.start();
+        oi = new OI();
+        gameData = new GameData();
+        cubeVision.start();
 
-	initializeDashboard();
+        initializeDashboard();
     }
 
     /**
@@ -107,68 +107,68 @@ public class Robot extends IterativeRobot {
      * diagnostic display fields.
      */
     private void initializeDashboard() {
-	// Autonomous control
-	chooserMode.addDefault(ROCK, new MartianRock());
-	chooserMode.addObject(SWITCH, new SwitchAuto());
-	chooserMode.addObject(SCALE, new ScaleAuto());
-	chooserMode.addObject(AUTO_LINE, new AutoLine());
-	// chooserMode.setName("Choose Mode");
+        // Autonomous control
+        chooserMode.addDefault(ROCK, new MartianRock());
+        chooserMode.addObject(SWITCH, new SwitchAuto());
+        chooserMode.addObject(SCALE, new ScaleAuto());
+        chooserMode.addObject(AUTO_LINE, new AutoLine());
+        // chooserMode.setName("Choose Mode");
 
-	chooserPosition.addDefault("Center", CENTER);
-	chooserPosition.addObject("Left", LEFT);
-	chooserPosition.addObject("Right", RIGHT);
+        chooserPosition.addDefault("Center", CENTER);
+        chooserPosition.addObject("Left", LEFT);
+        chooserPosition.addObject("Right", RIGHT);
 
-	chooserCrossSide.addDefault("Allow crossing", YES);
-	chooserCrossSide.addObject("Don't allow crossing", NO);
+        chooserCrossSide.addDefault("Allow crossing", YES);
+        chooserCrossSide.addObject("Don't allow crossing", NO);
 
-	oldVersion.addDefault("2 cube scale", NO);
-	oldVersion.addObject("Orlando scale", YES);
-	// SmartDashboard.putBoolean("Cross to other Side", chooseCross);
+        oldVersion.addDefault("2 cube scale", NO);
+        oldVersion.addObject("Orlando scale", YES);
+        // SmartDashboard.putBoolean("Cross to other Side", chooseCross);
 
-	// SmartDashboard.putData(AUTO_MODE_LABEL, chooser);
-	SmartDashboard.putData("Auto Mode", chooserMode);
-	SmartDashboard.putData("Start Position", chooserPosition);
-	SmartDashboard.putData("Allow Cross Side?", chooserCrossSide);
-	SmartDashboard.putData("Orlando scale", oldVersion);
-	SmartDashboard.putBoolean("Enable processing", true);
-	// SmartDashboard.putData("Run switch", new SwitchAuto());
-	// SmartDashboard.putData("Run scale", new ScaleAuto());
-	/*
-	 * // Configuration fields // SmartDashboard.putNumber(ELEVATOR_SPEED_LABEL,
-	 * .9); // SmartDashboard.putNumber("ELevator speed down", .75); //
-	 * SmartDashboard.putNumber("Elevator nuetral speed", .15);
-	 * 
-	 * // Diagnostic data // updateDiagnostics();
-	 * 
-	 * // Command buttons for one-time execution
-	 */
-	// SmartDashboard.putData(DRIVE_FORWARD_FIVE_FEET_LABEL, new DriveForward(60));
-	/*
-	 * 0.6)); SmartDashboard.putData(TURN_LEFT_LABEL, new TurnLeft(90));
-	 * SmartDashboard.putData(TURN_RIGHT_LABEL, new TurnRight(90));
-	 */
-	// SmartDashboard.putData("Left 45", new TurnLeft(45));
-	// SmartDashboard.putData("Left 90", new TurnLeft(90));
-	/*
-	 * SmartDashboard.putData("Right 45", new TurnRight(45));
-	 * SmartDashboard.putData(STOP_LABEL, new Stop());
-	 * SmartDashboard.putData(MOVE_FROM_WALL, new DriveDistanceFromWall(558));
-	 * SmartDashboard.putData(DRIVE_TO_CUBE, new DriveToCubeTeleop());
-	 * SmartDashboard.putData("Elevator to -500", new SetElevator(-500));
-	 * SmartDashboard.putData("Reset elevator", new SetElevator(0));
-	 * SmartDashboard.putData("Shift arms", new ShiftArms());
-	 * SmartDashboard.putData("Drive back", new DriveForward(12, -.75));
-	 */
-	SmartDashboard.putData("Latch chain", new BreakChain());
-	/*
-	 * SmartDashboard.putData("Turn left without pid", new TurnLeftWithoutPid(90));
-	 */
-	// SmartDashboard.putData("Autonomous cube", new
-	// DriveToCubeAuto(CubeVisionThread.SelectorType.bottom, 1));
-	// SmartDashboard.putNumber("P", -.1);
-	// SmartDashboard.putNumber("D", -.05);
-	// SmartDashboard.putNumber("I", -.0);
-	// SmartDashboard.putString("Override", "Don't override");
+        // SmartDashboard.putData(AUTO_MODE_LABEL, chooser);
+        SmartDashboard.putData("Auto Mode", chooserMode);
+        SmartDashboard.putData("Start Position", chooserPosition);
+        SmartDashboard.putData("Allow Cross Side?", chooserCrossSide);
+        SmartDashboard.putData("Orlando scale", oldVersion);
+        SmartDashboard.putBoolean("Enable processing", true);
+        // SmartDashboard.putData("Run switch", new SwitchAuto());
+        // SmartDashboard.putData("Run scale", new ScaleAuto());
+        /*
+         * // Configuration fields // SmartDashboard.putNumber(ELEVATOR_SPEED_LABEL,
+         * .9); // SmartDashboard.putNumber("ELevator speed down", .75); //
+         * SmartDashboard.putNumber("Elevator nuetral speed", .15);
+         * 
+         * // Diagnostic data // updateDiagnostics();
+         * 
+         * // Command buttons for one-time execution
+         */
+        // SmartDashboard.putData(DRIVE_FORWARD_FIVE_FEET_LABEL, new DriveForward(60));
+        /*
+         * 0.6)); SmartDashboard.putData(TURN_LEFT_LABEL, new TurnLeft(90));
+         * SmartDashboard.putData(TURN_RIGHT_LABEL, new TurnRight(90));
+         */
+        // SmartDashboard.putData("Left 45", new TurnLeft(45));
+        // SmartDashboard.putData("Left 90", new TurnLeft(90));
+        /*
+         * SmartDashboard.putData("Right 45", new TurnRight(45));
+         * SmartDashboard.putData(STOP_LABEL, new Stop());
+         * SmartDashboard.putData(MOVE_FROM_WALL, new DriveDistanceFromWall(558));
+         * SmartDashboard.putData(DRIVE_TO_CUBE, new DriveToCubeTeleop());
+         * SmartDashboard.putData("Elevator to -500", new SetElevator(-500));
+         * SmartDashboard.putData("Reset elevator", new SetElevator(0));
+         * SmartDashboard.putData("Shift arms", new ShiftArms());
+         * SmartDashboard.putData("Drive back", new DriveForward(12, -.75));
+         */
+        SmartDashboard.putData("Latch chain", new BreakChain());
+        /*
+         * SmartDashboard.putData("Turn left without pid", new TurnLeftWithoutPid(90));
+         */
+        // SmartDashboard.putData("Autonomous cube", new
+        // DriveToCubeAuto(CubeVisionThread.SelectorType.bottom, 1));
+        // SmartDashboard.putNumber("P", -.1);
+        // SmartDashboard.putNumber("D", -.05);
+        // SmartDashboard.putNumber("I", -.0);
+        // SmartDashboard.putString("Override", "Don't override");
     }
 
     /**
@@ -178,10 +178,10 @@ public class Robot extends IterativeRobot {
      */
     @Override
     public void disabledInit() {
-	// new SetElevator(0).start();
-	if (autonomousCommand != null)
-	    autonomousCommand.cancel();
-	Scheduler.getInstance().removeAll();
+        // new SetElevator(0).start();
+        if (autonomousCommand != null)
+            autonomousCommand.cancel();
+        Scheduler.getInstance().removeAll();
     }
 
     /**
@@ -189,7 +189,7 @@ public class Robot extends IterativeRobot {
      */
     @Override
     public void disabledPeriodic() {
-	Scheduler.getInstance().run();
+        Scheduler.getInstance().run();
     }
 
     /**
@@ -205,15 +205,15 @@ public class Robot extends IterativeRobot {
      */
     @Override
     public void autonomousInit() {
-	gameData.readGameData();
-	autonomousCommand = (Command) chooserMode.getSelected();
-	driveSubsystem.resetEncoders();
-	elevatorSubsystem.resetEncoder();
-	// schedule the autonomous command
-	if (autonomousCommand != null) {
-	    // SmartDashboard.putString("i", "nit");
-	    autonomousCommand.start();
-	}
+        gameData.readGameData();
+        autonomousCommand = (Command) chooserMode.getSelected();
+        driveSubsystem.resetEncoders();
+        elevatorSubsystem.resetEncoder();
+        // schedule the autonomous command
+        if (autonomousCommand != null) {
+            // SmartDashboard.putString("i", "nit");
+            autonomousCommand.start();
+        }
     }
 
     /**
@@ -221,8 +221,8 @@ public class Robot extends IterativeRobot {
      */
     @Override
     public void autonomousPeriodic() {
-	// updateDiagnostics();9
-	Scheduler.getInstance().run();
+        // updateDiagnostics();9
+        Scheduler.getInstance().run();
     }
 
     /**
@@ -230,13 +230,13 @@ public class Robot extends IterativeRobot {
      */
     @Override
     public void teleopInit() {
-	// This makes sure that the autonomous stops running when
-	// teleop starts running. If you want the autonomous to
-	// continue until interrupted by another command, remove
-	// this line or comment it out.
-	if (autonomousCommand != null) {
-	    autonomousCommand.cancel();
-	}
+        // This makes sure that the autonomous stops running when
+        // teleop starts running. If you want the autonomous to
+        // continue until interrupted by another command, remove
+        // this line or comment it out.
+        if (autonomousCommand != null) {
+            autonomousCommand.cancel();
+        }
     }
 
     /**
@@ -244,17 +244,17 @@ public class Robot extends IterativeRobot {
      */
     @Override
     public void teleopPeriodic() {
-	updateDiagnostics();
-	Scheduler.getInstance().run();
+        updateDiagnostics();
+        Scheduler.getInstance().run();
     }
 
     /**
      * Renders a collection of diagnostic data to the smart dashboard.
      */
     private void updateDiagnostics() {
-	// driveSubsystem.updateDiagnostics();
-	// elevatorSubsystem.updateDiagnostics();
-	// cubeSubsystem.updateDiagnostics();
-	// cubeVision.updateDiagnostics();
+        // driveSubsystem.updateDiagnostics();
+        // elevatorSubsystem.updateDiagnostics();
+        // cubeSubsystem.updateDiagnostics();
+        // cubeVision.updateDiagnostics();
     }
 }

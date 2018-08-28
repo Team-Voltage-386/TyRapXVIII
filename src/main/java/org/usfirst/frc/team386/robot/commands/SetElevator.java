@@ -15,43 +15,42 @@ public class SetElevator extends Command {
     /**
      * Set the elevator to a certain position based on the number of encoder ticks.
      * 
-     * @param ticksIn
-     *            the encoder ticks to set the elevator to
+     * @param ticksIn the encoder ticks to set the elevator to
      */
     public SetElevator(int ticksIn) {
-	super();
-	requires(Robot.elevatorSubsystem);
-	ticks = ticksIn;
+        super();
+        requires(Robot.elevatorSubsystem);
+        ticks = ticksIn;
     }
 
     boolean goingDown = false;
 
     // Called once when the command executes
     protected void initialize() {
-	if (ticks < Robot.elevatorSubsystem.elevatorEncoder.get()) {
-	    goingDown = false;
-	} else {
-	    goingDown = true;
-	}
+        if (ticks < Robot.elevatorSubsystem.elevatorEncoder.get()) {
+            goingDown = false;
+        } else {
+            goingDown = true;
+        }
     }
 
     @Override
     protected void execute() {
-	Robot.elevatorSubsystem.setHeight(ticks, goingDown);
+        Robot.elevatorSubsystem.setHeight(ticks, goingDown);
     }
 
     @Override
     protected boolean isFinished() {
-	if (!goingDown)
-	    return (Robot.elevatorSubsystem.elevatorEncoder.get() < ticks
-		    || !Robot.elevatorSubsystem.upperElevatorLimitSwitch.get());
-	else
-	    return ((Robot.elevatorSubsystem.elevatorEncoder.get() > ticks)
-		    || !Robot.elevatorSubsystem.lowerElevatorLimitSwitch.get());
+        if (!goingDown)
+            return (Robot.elevatorSubsystem.elevatorEncoder.get() < ticks
+                    || !Robot.elevatorSubsystem.upperElevatorLimitSwitch.get());
+        else
+            return ((Robot.elevatorSubsystem.elevatorEncoder.get() > ticks)
+                    || !Robot.elevatorSubsystem.lowerElevatorLimitSwitch.get());
     }
 
     @Override
     protected void end() {
-	Robot.elevatorSubsystem.stopElevator();
+        Robot.elevatorSubsystem.stopElevator();
     }
 }

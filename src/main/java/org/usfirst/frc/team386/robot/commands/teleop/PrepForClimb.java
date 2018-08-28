@@ -12,32 +12,23 @@ import edu.wpi.first.wpilibj.command.InstantCommand;
  */
 public class PrepForClimb extends InstantCommand {
 
-    public PrepForClimb() {
-	super();
-    }
-
-    protected void initialize() {
-	if (true/*
-		 * DriverStation.getInstance().getMatchTime() < 30 &&
-		 * Robot.oi.manipulator.getRawButton(RobotMap.prepForClimbButton2)
-		 */) {
-	    new ExecuteSteps().start();
-	    // SmartDashboard.putString("prepClimbErrors", "No error");
-	} else {
-	    // SmartDashboard.putString("prepClimbErrors", "Error: climb is only allowed
-	    // with 30 seconds of game end");
+	public PrepForClimb() {
+		super();
 	}
-    }
 
-    /**
-     * Executes the steps to prepare for the climb.
-     */
-    class ExecuteSteps extends CommandGroup {
-
-	ExecuteSteps() {
-	    addSequential(new BreakChain());
-	    addSequential(new SetArms(ArmsSubsystem.RAISED));
+	protected void initialize() {
+		new ExecuteSteps().start();
 	}
-    }
+
+	/**
+	 * Executes the steps to prepare for the climb.
+	 */
+	class ExecuteSteps extends CommandGroup {
+
+		ExecuteSteps() {
+			addSequential(new BreakChain());
+			addSequential(new SetArms(ArmsSubsystem.RAISED));
+		}
+	}
 
 }

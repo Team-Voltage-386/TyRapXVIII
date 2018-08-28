@@ -41,24 +41,24 @@ public class OI {
 
     // RobotMap.toggleElevatorLockButton
     public OI() {
-	arcadeDriveShiftButton.whenPressed(new GearShift());
-	// tankDriveShiftButton.whenPressed(new GearShift());
+        arcadeDriveShiftButton.whenPressed(new GearShift());
+        // tankDriveShiftButton.whenPressed(new GearShift());
 
-	// arcadeDriveBoostButton.whenPressed(new BoostStop());
-	// arcadeDriveBoostButton.whenReleased(new BoostStart());
+        // arcadeDriveBoostButton.whenPressed(new BoostStop());
+        // arcadeDriveBoostButton.whenReleased(new BoostStart());
 
-	// tankDriveBoostButton.whenPressed(new BoostStart());
-	// tankDriveBoostButton.whenReleased(new BoostStop());
+        // tankDriveBoostButton.whenPressed(new BoostStart());
+        // tankDriveBoostButton.whenReleased(new BoostStop());
 
-	driveToCubeButton.whenPressed(new DriveToCubeTeleop());
+        driveToCubeButton.whenPressed(new DriveToCubeTeleop());
 
-	// arcadeDriveElevatorToExchangeButton.whenPressed(new SetElevator(-200));
-	arcadeDriveToggerElevatorLock.whenPressed(new ToggleElevatorLock());
+        // arcadeDriveElevatorToExchangeButton.whenPressed(new SetElevator(-200));
+        arcadeDriveToggerElevatorLock.whenPressed(new ToggleElevatorLock());
 
-	autoCubeIntakeButton.whenPressed(new CubeWithUltrasonics());
+        autoCubeIntakeButton.whenPressed(new CubeWithUltrasonics());
 
-	prepForClimbButton.whenPressed(new PrepForClimb());
-	shiftArmsButton.whenPressed(new ShiftArms());
-	climbButton.whenPressed(new Climb());
+        prepForClimbButton.whenPressed(new PrepForClimb());
+        shiftArmsButton.whenPressed(new ShiftArms());
+        climbButton.whenPressed(new Climb());
     }
 }
