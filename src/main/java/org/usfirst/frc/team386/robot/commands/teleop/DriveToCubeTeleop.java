@@ -12,23 +12,23 @@ import edu.wpi.first.wpilibj.command.Command;
 public class DriveToCubeTeleop extends Command {
 
     public DriveToCubeTeleop() {
-        requires(Robot.driveSubsystem);
+	requires(Robot.driveSubsystem);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        Robot.driveSubsystem.prepareDriveToCube();
+	Robot.driveSubsystem.prepareDriveToCube();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        Robot.driveSubsystem.driveWithVision(Robot.oi.xboxControl.getRawAxis(RobotMap.driveLeftJoystickVertical));
+	Robot.driveSubsystem.driveWithVision(Robot.oi.xboxControl.getRawAxis(RobotMap.driveLeftJoystickVertical));
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        // This should return false as long as the button is pushed.
-        return !Robot.oi.xboxControl.getRawButton(RobotMap.driveToCubeButton) || !RobotState.isEnabled();
+	// This should return false as long as the button is pushed.
+	return !Robot.oi.xboxControl.getRawButton(RobotMap.driveToCubeButton) || !RobotState.isEnabled();
     }
 
     // Called once after isFinished returns true

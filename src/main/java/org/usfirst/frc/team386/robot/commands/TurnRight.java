@@ -10,37 +10,31 @@ import edu.wpi.first.wpilibj.command.Command;
 public class TurnRight extends Command {
     int angle;
 
-    /**
-     * Starts a new PID turn right
-     * 
-     * @param angle The angle to turn right
-     */
-
     public TurnRight(int angle) {
-        super();
-        requires(Robot.driveSubsystem);
-        this.angle = angle;
+	super();
+	requires(Robot.driveSubsystem);
+	this.angle = angle;
     }
 
     // Called once when the command executes
     protected void initialize() {
-        Robot.driveSubsystem.resetPidTurn(angle, 1);
+	Robot.driveSubsystem.resetPidTurn(angle, 1);
     }
 
     @Override
     protected void execute() {
-        Robot.driveSubsystem.turnWithPid();
+	Robot.driveSubsystem.turnWithPid();
     }
 
     @Override
     protected boolean isFinished() {
-        return Robot.driveSubsystem.pidTurnDone();
+	return Robot.driveSubsystem.pidTurnDone();
     }
 
     @Override
     protected void end() {
-        Robot.driveSubsystem.resetEncoders();
-        Robot.driveSubsystem.resetGyro();
+	Robot.driveSubsystem.resetEncoders();
+	Robot.driveSubsystem.resetGyro();
     }
 
 }

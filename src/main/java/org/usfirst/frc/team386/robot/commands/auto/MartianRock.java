@@ -13,12 +13,12 @@ import edu.wpi.first.wpilibj.command.InstantCommand;
 public class MartianRock extends InstantCommand {
 
     public MartianRock() {
-        super();
+	super();
     }
 
     // Called once when the command executes
     protected void initialize() {
-        new Stop().start();
+	new Stop().start();
     }
 
 }

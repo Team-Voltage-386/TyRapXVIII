@@ -15,37 +15,37 @@ public class DriveDistanceFromWall extends Command {
     private boolean goingForward;
 
     /**
-     * Drive the robot a specific distance from a wall, as detected by a rear
-     * ultrasonic.
+     * The distance from the wall, in millimeters.
      * 
-     * @param distanceFromWall Distance in millimeters
+     * @param distanceFromWall
+     *            Distance in millimeters
      */
     public DriveDistanceFromWall(double distanceFromWall) {
-        super();
-        requires(Robot.driveSubsystem);
-        this.distanceFromWall = distanceFromWall;
+	super();
+	requires(Robot.driveSubsystem);
+	this.distanceFromWall = distanceFromWall;
     }
 
     // Called once when the command executes
     protected void initialize() {
-        goingForward = Robot.driveSubsystem.rearUltrasonic.getRangeMM() < distanceFromWall;
-        Robot.driveSubsystem.resetGyro();
+	goingForward = Robot.driveSubsystem.rearUltrasonic.getRangeMM() < distanceFromWall;
+	Robot.driveSubsystem.resetGyro();
     }
 
     @Override
     protected void execute() {
-        if (goingForward)
-            Robot.driveSubsystem.arcadeDriveStraight(DriveSubsystem.SLOW_AUTO_MODE_SPEED);
-        else
-            Robot.driveSubsystem.arcadeDriveStraight(-1 * DriveSubsystem.SLOW_AUTO_MODE_SPEED);
+	if (goingForward)
+	    Robot.driveSubsystem.arcadeDriveStraight(DriveSubsystem.SLOW_AUTO_MODE_SPEED);
+	else
+	    Robot.driveSubsystem.arcadeDriveStraight(-1 * DriveSubsystem.SLOW_AUTO_MODE_SPEED);
     }
 
     @Override
     protected boolean isFinished() {
-        if (goingForward)
-            return (Robot.driveSubsystem.rearUltrasonic.getRangeMM() > distanceFromWall);
-        else
-            return (Robot.driveSubsystem.rearUltrasonic.getRangeMM() < distanceFromWall);
+	if (goingForward)
+	    return (Robot.driveSubsystem.rearUltrasonic.getRangeMM() > distanceFromWall);
+	else
+	    return (Robot.driveSubsystem.rearUltrasonic.getRangeMM() < distanceFromWall);
     }
 
 }

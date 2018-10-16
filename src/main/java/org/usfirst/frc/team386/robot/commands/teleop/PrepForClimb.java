@@ -5,6 +5,7 @@ import org.usfirst.frc.team386.robot.subsystems.ArmsSubsystem;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.InstantCommand;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * Prepare the robot to climb. This will disconnect the chain so that the intake
@@ -12,23 +13,31 @@ import edu.wpi.first.wpilibj.command.InstantCommand;
  */
 public class PrepForClimb extends InstantCommand {
 
-	public PrepForClimb() {
-		super();
-	}
+    public PrepForClimb() {
+	super();
+    }
 
-	protected void initialize() {
-		new ExecuteSteps().start();
+    protected void initialize() {
+	if (true/*
+		 * DriverStation.getInstance().getMatchTime() < 30 &&
+		 * Robot.oi.manipulator.getRawButton(RobotMap.prepForClimbButton2)
+		 */) {
+	    new ExecuteSteps().start();
+	    SmartDashboard.putString("prepClimbErrors", "No error");
+	} else {
+	    SmartDashboard.putString("prepClimbErrors", "Error: climb is only allowed with 30 seconds of game end");
 	}
+    }
 
-	/**
-	 * Executes the steps to prepare for the climb.
-	 */
-	class ExecuteSteps extends CommandGroup {
+    /**
+     * Executes the steps to prepare for the climb.
+     */
+    class ExecuteSteps extends CommandGroup {
 
-		ExecuteSteps() {
-			addSequential(new BreakChain());
-			addSequential(new SetArms(ArmsSubsystem.RAISED));
-		}
+	ExecuteSteps() {
+	    addSequential(new BreakChain());
+	    addSequential(new SetArms(ArmsSubsystem.RAISED));
 	}
+    }
 
 }

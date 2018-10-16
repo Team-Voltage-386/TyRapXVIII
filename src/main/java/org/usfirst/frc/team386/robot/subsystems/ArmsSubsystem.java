@@ -17,26 +17,27 @@ public class ArmsSubsystem extends Subsystem {
 
     @Override
     public void initDefaultCommand() {
-        // Set the default command for a subsystem here.
+	// Set the default command for a subsystem here.
     }
 
     /**
      * Shift the arms to the other position.
      */
     public void shiftArms() {
-        if (arms.get() == RAISED) {
-            setArms(LOWERED);
-        } else {
-            setArms(RAISED);
-        }
+	if (arms.get() == RAISED) {
+	    setArms(LOWERED);
+	} else {
+	    setArms(RAISED);
+	}
     }
 
     /**
      * Set arms to specified position.
      * 
-     * @param position The arm position (either LOWERED or RAISED).
+     * @param position
+     *            The arm position (either LOWERED or RAISED).
      */
     public void setArms(DoubleSolenoid.Value position) {
-        arms.set(position);
+	arms.set(position);
     }
 }

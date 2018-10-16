@@ -5,18 +5,19 @@ import org.usfirst.frc.team386.robot.Robot;
 import edu.wpi.first.wpilibj.command.InstantCommand;
 
 /**
- * Stop (aka martian rock).
+ * Stop the speed boost.
  */
-public class Stop extends InstantCommand {
+public class BoostStop extends InstantCommand {
 
-    public Stop() {
+    public BoostStop() {
 	super();
+	// Use requires() here to declare subsystem dependencies
 	requires(Robot.driveSubsystem);
     }
 
     // Called once when the command executes
     protected void initialize() {
-	Robot.driveSubsystem.stop();
+	Robot.driveSubsystem.stopBoost();
     }
 
 }

@@ -22,16 +22,9 @@ public class GameData {
      * Will also put the game data string into the dashboard for debugging purposes.
      */
     public void readGameData() {
-        if (SmartDashboard.getString("Override", "Don't override").equals(LLL)
-                || SmartDashboard.getString("Override", "Don't override").equals(LRL)
-                || SmartDashboard.getString("Override", "Don't override").equals(RRR)
-                || SmartDashboard.getString("Override", "Don't override").equals(RLR))
-            gameData = SmartDashboard.getString("Override", "Don't override");
-        else {
-            while (gameData.length() < 3)
-                gameData = DriverStation.getInstance().getGameSpecificMessage();
-            SmartDashboard.putString(Robot.GAME_DATA, gameData);
-        }
+	while (gameData.length() < 3)
+	    gameData = DriverStation.getInstance().getGameSpecificMessage();
+	SmartDashboard.putString(Robot.GAME_DATA, gameData);
     }
 
     /**
@@ -40,7 +33,7 @@ public class GameData {
      * @return True if the switch is left.
      */
     public boolean isSwitchLeft() {
-        return gameData.equals(LLL) || gameData.equals(LRL);
+	return gameData.equals(LLL) || gameData.equals(LRL);
     }
 
     /**
@@ -49,7 +42,7 @@ public class GameData {
      * @return True if the switch is left.
      */
     public boolean isSwitchRight() {
-        return gameData.equals(RRR) || gameData.equals(RLR);
+	return gameData.equals(RRR) || gameData.equals(RLR);
     }
 
     /**
@@ -58,7 +51,7 @@ public class GameData {
      * @return True if the scale is left
      */
     public boolean isScaleLeft() {
-        return gameData.equals(LLL) || gameData.equals(RLR);
+	return gameData.equals(LLL) || gameData.equals(RLR);
     }
 
     /**
@@ -67,6 +60,6 @@ public class GameData {
      * @return True if the scale is right
      */
     public boolean isScaleRight() {
-        return gameData.equals(RRR) || gameData.equals(LRL);
+	return gameData.equals(RRR) || gameData.equals(LRL);
     }
 }

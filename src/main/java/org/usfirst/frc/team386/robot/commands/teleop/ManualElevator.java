@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.command.Command;
 public class ManualElevator extends Command {
 
     public ManualElevator() {
-        requires(Robot.elevatorSubsystem);
+	requires(Robot.elevatorSubsystem);
     }
 
     // Called just before this Command runs the first time
@@ -20,13 +20,13 @@ public class ManualElevator extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        Robot.elevatorSubsystem.elevatorFromDPad(Robot.oi.manipulator.getPOV(0), ElevatorSubsystem.SPEED_UP,
-                ElevatorSubsystem.SPEED_DOWN, ElevatorSubsystem.SPEED_NUETRAL);
+	Robot.elevatorSubsystem.elevatorFromDPad(Robot.oi.manipulator.getPOV(0), ElevatorSubsystem.SPEED_UP,
+		ElevatorSubsystem.SPEED_DOWN, ElevatorSubsystem.SPEED_NUETRAL);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+	return false;
     }
 
     // Called once after isFinished returns true
