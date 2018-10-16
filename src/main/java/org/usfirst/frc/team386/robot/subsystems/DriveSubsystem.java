@@ -48,9 +48,6 @@ public class DriveSubsystem extends Subsystem {
     public static final int RIGHT = 1;
 
     private static final int NO_TIMEOUT = 0;
-    final int kPeakCurrentAmps = 35; /* threshold to trigger current limit */
-    final int kPeakTimeMs = 0; /* how long after Peak current to trigger current limit */
-    final int kContinCurrentAmps = 25; /* hold current after limit is triggered */
 
     public static double speedMultiplier = BOOST_SPEED_MULTIPLIER;
 
@@ -99,21 +96,11 @@ public class DriveSubsystem extends Subsystem {
 	// leftSlave2.follow(frontLeft);
 	rightSlave1.follow(frontRight);
 	// rightSlave2.follow(frontRight);
-	frontLeft.configPeakCurrentLimit(kPeakCurrentAmps, 10);
-	frontLeft.configPeakCurrentDuration(kPeakTimeMs, 10); /* this is a necessary call to avoid errata. */
-	frontLeft.configContinuousCurrentLimit(kContinCurrentAmps, 10);
-	frontLeft.enableCurrentLimit(true); /* honor initial setting */
 
-	frontRight.configPeakCurrentLimit(kPeakCurrentAmps, 10);
-	frontRight.configPeakCurrentDuration(kPeakTimeMs, 10); /* this is a necessary call to avoid errata. */
-	frontRight.configContinuousCurrentLimit(kContinCurrentAmps, 10);
-	frontRight.enableCurrentLimit(true); /* honor initial setting */
-
-	// frontRight.configContinuousCurrentLimit(MOTOR_CURRENT_LIMIT_AMPS,
-	// NO_TIMEOUT);
-	// frontLeft.configContinuousCurrentLimit(MOTOR_CURRENT_LIMIT_AMPS, NO_TIMEOUT);
-	// frontRight.enableCurrentLimit(true);
-	// frontLeft.enableCurrentLimit(true);
+	frontRight.configContinuousCurrentLimit(MOTOR_CURRENT_LIMIT_AMPS, NO_TIMEOUT);
+	frontLeft.configContinuousCurrentLimit(MOTOR_CURRENT_LIMIT_AMPS, NO_TIMEOUT);
+	frontRight.enableCurrentLimit(true);
+	frontLeft.enableCurrentLimit(true);
 
 	frontRight.configOpenloopRamp(OPEN_LOOP_RAMP_SECONDS, NO_TIMEOUT);
 	frontLeft.configOpenloopRamp(OPEN_LOOP_RAMP_SECONDS, NO_TIMEOUT);
@@ -532,10 +519,6 @@ public class DriveSubsystem extends Subsystem {
      *            The limit
      * @return 0 or the speed if the input is greater than the limit
      */
-    public void highGearTurn() {
-		// TODO Auto-generated method stub
-		
-	}
     private double deadBand(double in, double limit) {
 	if (Math.abs(in) < limit) {
 	    return 0;
@@ -581,6 +564,4 @@ public class DriveSubsystem extends Subsystem {
     public double getRightEncoder() {
 	return frontRight.getSelectedSensorPosition(0);
     }
-
-	
 }
