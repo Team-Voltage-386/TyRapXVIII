@@ -94,38 +94,51 @@ public class CubeVisionThread extends Thread {
 		Size edgeDilateSize = new Size(4, 4);
 		boolean previousState = true;
 		while (!Thread.interrupted()) {
+			//"State" is used to enable and disable image processing during competition, in the intrest of FPS
 			boolean state = SmartDashboard.getBoolean("Enable processing", true);
 			if (state) {
 				if (!previousState) {
 					camera.setFPS(FPS);
 					camera.setExposureManual(33);
 				}
+				//Recive the inital image
 				cvSink.grabFrame(base);
+				//Blurs the image for ease of processing
 				Imgproc.blur(base, mat, blurSize);
+				//Converts from the RGB scale to HSV because HSV is more useful
 				Imgproc.cvtColor(mat, mat, Imgproc.COLOR_BGR2HSV);
+				//COnverst Mat to a black and white image where pixils in the given range appear white
 				Core.inRange(mat, colorStart, colorEnd, mat);
+				//Erode and then dilate to sharpen the corners
 				Imgproc.erode(mat, mat, Imgproc.getStructuringElement(Imgproc.MORPH_RECT, erodeSize));
 				Imgproc.dilate(mat, mat, Imgproc.getStructuringElement(Imgproc.MORPH_RECT, dilateSize));
 
+				//Makes a greyscale version of the origional image for edge detection
 				Imgproc.cvtColor(base, grey, Imgproc.COLOR_BGR2GRAY);
+				//Makes a black and white image where white pixils are edges
 				Imgproc.Canny(grey, edges, 100, 200);
 
+				//Dilate and erode to convers separate edges to continuous lines
 				Imgproc.dilate(edges, edges, Imgproc.getStructuringElement(Imgproc.MORPH_RECT, edgeDilateSize));
-
 				Imgproc.erode(edges, edges, Imgproc.getStructuringElement(Imgproc.MORPH_RECT, new Size(3, 3)));
 
+				//Erases the edge pixils from the color filtered image
 				Core.bitwise_not(edges, edges);
 				Core.bitwise_and(mat, edges, mat);
+				//Outputs the current image
 				HSVOutputStream.putFrame(edges);
 				finalContours.clear();
+				//FInds the outlines of the white rectangles of the current image
 				Imgproc.findContours(mat, finalContours, hierarchy, Imgproc.RETR_TREE, Imgproc.CHAIN_APPROX_SIMPLE);
 				rects.clear();
+				//Makes rectangle objects for each of the contours
 				for (int i = 0; i < finalContours.size(); i++) {
 					RotatedRect rect = Imgproc.minAreaRect(new MatOfPoint2f(finalContours.get(i).toArray()));
 					if (rect.size.height > 10 && rect.size.width > 10 && rect.angle < 10)
 						rects.add(rect);
 				}
 
+				//Selects one of the rectangles based on the current selection method
 				switch (selectionMethod) {
 				case bottom: {
 					double closest = -1;
@@ -170,20 +183,25 @@ public class CubeVisionThread extends Thread {
 				}
 				}
 
+				//Draws the rectangles over the origional image (purely for human use)
 				rectChoice = smallestI;
 				for (int i = 0; i < rects.size(); i++) {
 					Point[] vertices = new Point[4];
 					rects.get(i).points(vertices);
 					MatOfPoint points = new MatOfPoint(vertices);
+					//The selected rectangle is green, others are white
 					if (i != smallestI)
 						Imgproc.drawContours(base, Arrays.asList(points), -1, new Scalar(255, 255, 255), 5);
 					else
 						Imgproc.drawContours(base, Arrays.asList(points), -1, new Scalar(0, 255, 0), 5);
 				}
+				//Outputs the origional image with rectangles areound cubes
 				rectOutputStream.putFrame(base);
 
 				Thread.yield();
-			} else {
+			} 
+			//If processing isn't enabled, increase FPS and output an unfiltered image
+			else {
 				if (previousState) {
 					camera.setFPS(30);
 					camera.setExposureAuto();
