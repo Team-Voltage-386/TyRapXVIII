@@ -1,8 +1,8 @@
-package org.usfirst.frc.team386.robot.commands.teleop;
+package frc.robot.commands.teleop;
 
-import org.usfirst.frc.team386.robot.Robot;
-import org.usfirst.frc.team386.robot.RobotMap;
-import org.usfirst.frc.team386.robot.subsystems.ElevatorSubsystem;
+import frc.robot.Robot;
+import frc.robot.RobotMap;
+import frc.robot.subsystems.ElevatorSubsystem;
 
 import edu.wpi.first.wpilibj.command.Command;
 

@@ -1,15 +1,15 @@
 
-package org.usfirst.frc.team386.robot;
+package frc.robot;
 
-import org.usfirst.frc.team386.robot.commands.auto.AutoLine;
-import org.usfirst.frc.team386.robot.commands.auto.MartianRock;
-import org.usfirst.frc.team386.robot.commands.auto.ScaleAuto;
-import org.usfirst.frc.team386.robot.commands.auto.SwitchAuto;
-import org.usfirst.frc.team386.robot.commands.teleop.BreakChain;
-import org.usfirst.frc.team386.robot.subsystems.ArmsSubsystem;
-import org.usfirst.frc.team386.robot.subsystems.CubeSubsystem;
-import org.usfirst.frc.team386.robot.subsystems.DriveSubsystem;
-import org.usfirst.frc.team386.robot.subsystems.ElevatorSubsystem;
+import frc.robot.commands.auto.AutoLine;
+import frc.robot.commands.auto.MartianRock;
+import frc.robot.commands.auto.ScaleAuto;
+import frc.robot.commands.auto.SwitchAuto;
+import frc.robot.commands.teleop.BreakChain;
+import frc.robot.subsystems.ArmsSubsystem;
+import frc.robot.subsystems.CubeSubsystem;
+import frc.robot.subsystems.DriveSubsystem;
+import frc.robot.subsystems.ElevatorSubsystem;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;

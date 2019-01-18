@@ -1,9 +1,9 @@
-package org.usfirst.frc.team386.robot.subsystems;
+package frc.robot.subsystems;
 
-import org.usfirst.frc.team386.robot.AnalogUltrasonic;
-import org.usfirst.frc.team386.robot.Robot;
-import org.usfirst.frc.team386.robot.RobotMap;
-import org.usfirst.frc.team386.robot.commands.teleop.CubeWithTrigger;
+import frc.robot.AnalogUltrasonic;
+import frc.robot.Robot;
+import frc.robot.RobotMap;
+import frc.robot.commands.teleop.CubeWithTrigger;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 

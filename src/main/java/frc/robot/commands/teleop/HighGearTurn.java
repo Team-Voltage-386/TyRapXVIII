@@ -1,6 +1,6 @@
-package org.usfirst.frc.team386.robot.commands.teleop;
+package frc.robot.commands.teleop;
 
-import org.usfirst.frc.team386.robot.Robot;
+import frc.robot.Robot;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;

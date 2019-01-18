@@ -1,4 +1,4 @@
-package org.usfirst.frc.team386.robot;
+package frc.robot;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;

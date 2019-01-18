@@ -1,17 +1,17 @@
-package org.usfirst.frc.team386.robot.commands.auto;
+package frc.robot.commands.auto;
 
-import org.usfirst.frc.team386.robot.Robot;
-import org.usfirst.frc.team386.robot.commands.CubeRelease;
-import org.usfirst.frc.team386.robot.commands.CubeSuck;
-import org.usfirst.frc.team386.robot.commands.DriveForward;
-import org.usfirst.frc.team386.robot.commands.GearShift;
-import org.usfirst.frc.team386.robot.commands.SetArms;
-import org.usfirst.frc.team386.robot.commands.SetElevator;
-import org.usfirst.frc.team386.robot.commands.TurnLeft;
-import org.usfirst.frc.team386.robot.commands.TurnRight;
-import org.usfirst.frc.team386.robot.commands.teleop.DriveSeconds;
-import org.usfirst.frc.team386.robot.subsystems.ArmsSubsystem;
-import org.usfirst.frc.team386.robot.subsystems.DriveSubsystem;
+import frc.robot.Robot;
+import frc.robot.commands.CubeRelease;
+import frc.robot.commands.CubeSuck;
+import frc.robot.commands.DriveForward;
+import frc.robot.commands.GearShift;
+import frc.robot.commands.SetArms;
+import frc.robot.commands.SetElevator;
+import frc.robot.commands.TurnLeft;
+import frc.robot.commands.TurnRight;
+import frc.robot.commands.teleop.DriveSeconds;
+import frc.robot.subsystems.ArmsSubsystem;
+import frc.robot.subsystems.DriveSubsystem;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.CommandGroup;

@@ -1,7 +1,7 @@
-package org.usfirst.frc.team386.robot.commands.teleop;
+package frc.robot.commands.teleop;
 
-import org.usfirst.frc.team386.robot.commands.SetArms;
-import org.usfirst.frc.team386.robot.subsystems.ArmsSubsystem;
+import frc.robot.commands.SetArms;
+import frc.robot.subsystems.ArmsSubsystem;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.InstantCommand;

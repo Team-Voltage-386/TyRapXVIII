@@ -1,6 +1,6 @@
-package org.usfirst.frc.team386.robot.commands.auto;
+package frc.robot.commands.auto;
 
-import org.usfirst.frc.team386.robot.commands.Stop;
+import frc.robot.commands.Stop;
 
 import edu.wpi.first.wpilibj.command.InstantCommand;
 

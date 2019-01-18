@@ -1,7 +1,7 @@
-package org.usfirst.frc.team386.robot.commands.teleop;
+package frc.robot.commands.teleop;
 
-import org.usfirst.frc.team386.robot.Robot;
-import org.usfirst.frc.team386.robot.RobotMap;
+import frc.robot.Robot;
+import frc.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.RobotState;
 import edu.wpi.first.wpilibj.command.Command;

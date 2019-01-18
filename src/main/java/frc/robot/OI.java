@@ -1,12 +1,12 @@
-package org.usfirst.frc.team386.robot;
+package frc.robot;
 
-import org.usfirst.frc.team386.robot.commands.GearShift;
-import org.usfirst.frc.team386.robot.commands.ShiftArms;
-import org.usfirst.frc.team386.robot.commands.teleop.Climb;
-import org.usfirst.frc.team386.robot.commands.teleop.CubeWithUltrasonics;
-import org.usfirst.frc.team386.robot.commands.teleop.DriveToCubeTeleop;
-import org.usfirst.frc.team386.robot.commands.teleop.PrepForClimb;
-import org.usfirst.frc.team386.robot.commands.teleop.ToggleElevatorLock;
+import frc.robot.commands.GearShift;
+import frc.robot.commands.ShiftArms;
+import frc.robot.commands.teleop.Climb;
+import frc.robot.commands.teleop.CubeWithUltrasonics;
+import frc.robot.commands.teleop.DriveToCubeTeleop;
+import frc.robot.commands.teleop.PrepForClimb;
+import frc.robot.commands.teleop.ToggleElevatorLock;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;

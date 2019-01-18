@@ -1,9 +1,9 @@
-package org.usfirst.frc.team386.robot.subsystems;
+package frc.robot.subsystems;
 
-import org.usfirst.frc.team386.robot.CubeVisionThread;
-import org.usfirst.frc.team386.robot.Robot;
-import org.usfirst.frc.team386.robot.RobotMap;
-import org.usfirst.frc.team386.robot.commands.teleop.ArcadeDrive;
+import frc.robot.CubeVisionThread;
+import frc.robot.Robot;
+import frc.robot.RobotMap;
+import frc.robot.commands.teleop.ArcadeDrive;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 

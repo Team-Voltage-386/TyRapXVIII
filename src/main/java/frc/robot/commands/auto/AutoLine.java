@@ -1,7 +1,7 @@
-package org.usfirst.frc.team386.robot.commands.auto;
+package frc.robot.commands.auto;
 
-import org.usfirst.frc.team386.robot.Robot;
-import org.usfirst.frc.team386.robot.commands.DriveForward;
+import frc.robot.Robot;
+import frc.robot.commands.DriveForward;
 
 import edu.wpi.first.wpilibj.command.InstantCommand;
 

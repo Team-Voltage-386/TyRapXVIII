@@ -1,7 +1,7 @@
-package org.usfirst.frc.team386.robot.commands;
+package frc.robot.commands;
 
-import org.usfirst.frc.team386.robot.Robot;
-import org.usfirst.frc.team386.robot.subsystems.DriveSubsystem;
+import frc.robot.Robot;
+import frc.robot.subsystems.DriveSubsystem;
 
 import edu.wpi.first.wpilibj.command.Command;
 

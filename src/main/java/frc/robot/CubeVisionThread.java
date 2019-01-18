@@ -1,4 +1,4 @@
-package org.usfirst.frc.team386.robot;
+package frc.robot;
 
 import java.util.ArrayList;
 import java.util.Arrays;
